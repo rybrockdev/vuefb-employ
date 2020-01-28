@@ -7,3 +7,11 @@
        </div>
    </nav>
 </template>
+
+<style>
+@media only screen and (max-width: 600px) {
+  nav .brand-logo {
+    font-size: 20px !important;
+  }
+}
+</style>
