@@ -10,7 +10,11 @@
         </ul>
         <router-link to="/" class="btn grey">Back</router-link>
         <button @click="deleteEmployee" class="btn red">Delete</button>
-
+     <div class="fixed-action-btn">
+            <router-link v-bind:to="{name: 'EditEmployee', params: {employee_id: employee_id}}" class="btn-floating btn-large red">
+                <i class="fa fa-pencil"></i>
+            </router-link>
+        </div>
     </div>
 </template>
 
@@ -37,7 +41,7 @@ export default {
                       vm.name = doc.data().name,
                       vm.dept = doc.data().dept,
                         vm.position = doc.data().position
-                  
+
                   })
               })
           })
@@ -47,7 +51,7 @@ export default {
       },
       methods: {
           fetchData() {
-              db.collection('employees').where('employee_id', '==', 
+              db.collection('employees').where('employee_id', '==',
               this.$route.params.employee_id).get()
             .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
@@ -61,7 +65,7 @@ export default {
 
           deleteEmployee () {
               if(confirm("Are you sure?")) {
-                   db.collection('employees').where('employee_id', '==', 
+                   db.collection('employees').where('employee_id', '==',
                 this.$route.params.employee_id).get()
                 .then(querySnapshot => {
                 querySnapshot.forEach(doc => {
